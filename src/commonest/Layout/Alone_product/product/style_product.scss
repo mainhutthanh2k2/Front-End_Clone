@@ -1,0 +1,264 @@
+.dots {
+  list-style: disc;
+}
+.s {
+  height: auto;
+  width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.ss {
+  padding-left: 0;
+  display: inline-block;
+  max-width: 400px;
+  max-height: 400px;
+}
+.iphone14_seri {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sc {
+  font-weight: 500;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.ZZ {
+  border-radius: 3px;
+  height: 10px;
+  height: 20px;
+  margin: 3px 0 0 5px;
+  background-color: rgb(177, 18, 18);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: azure;
+}
+.qq {
+  font-weight: 500;
+  font-family: Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+}
+.cx {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-left: 0;
+  width: 350px;
+}
+.ll {
+  border-radius: 3px;
+  height: 10px;
+  height: 20px;
+  margin: 3px 0 0 5px;
+  background-color: rgb(177, 18, 18);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: azure;
+}
+.edit_tr {
+  margin: 10px 10px;
+}
+.header_nave_cursor_product {
+  font-size: 13px;
+  width: 140px;
+}
+.border_table td {
+  margin: 0px 0 0 30px;
+  border: 1px solid #dee2e6;
+  padding: 6px 10px;
+}
+.border_table {
+  margin: 20px 0 0 0;
+}
+.img_hover:hover {
+  border: 1px solid red;
+}
+.img_list_anh {
+  width: 400px;
+}
+.data_128,
+.data_256,
+.data_512 {
+  display: none;
+}
+
+#hover_128gb:checked ~ .data_128 {
+  display: inline-block;
+  font-weight: 300;
+}
+#hover_256gb:checked ~ .data_256 {
+  display: inline-block;
+  font-weight: 300;
+}
+#hover_512gb:checked ~ .data_512 {
+  display: inline-block;
+  font-weight: 300;
+}
+.checked {
+  display: none;
+}
+/*  */
+.black_img,
+.white_img,
+.yellow_img,
+.green,
+.blue {
+  display: none;
+}
+#img_black:checked ~ .black_img {
+  display: inline-block;
+  font-weight: 400;
+}
+#img_white:checked ~ .white_img {
+  display: inline-block;
+  font-weight: 400;
+}
+#img_yellow:checked ~ .yellow_img {
+  display: inline-block;
+  font-weight: 400;
+}
+#green:checked ~ .green {
+  display: inline-block;
+  font-weight: 400;
+}
+#blue:checked ~ .blue {
+  display: inline-block;
+  font-weight: 400;
+}
+.color_img {
+  display: none;
+}
+/*  */
+.seen_iphone_black,
+.seen_iphone_white,
+.seen_iphone_purple,
+.seen_iphone_yellow,
+.seen_iphone_pink {
+  display: none;
+}
+.none {
+  display: none;
+}
+
+#iphone_white:checked ~ .seen_iphone_white {
+  display: inline-block;
+}
+#iphone_black:checked ~ .seen_iphone_black {
+  display: inline-block;
+}
+#iphone_purple:checked ~ .seen_iphone_purple {
+  display: inline-block;
+}
+#iphone_yellow:checked ~ .seen_iphone_yellow {
+  display: inline-block;
+}
+#iphone_pink:checked ~ .seen_iphone_pink {
+  display: inline-block;
+}
+.input_use {
+  border: none;
+  background-color: none;
+}
+.input_use[type="file"] {
+  color: transparent;
+}
+.input_use {
+  display: none;
+}
+.thanhw {
+  width: 100px;
+}
+.button_buy:hover,
+.button_add_cart:hover {
+  background-color: #e59b11;
+}
+.button_buy,
+.button_add_cart {
+  background-color: yellow;
+}
+.title {
+  color: #212121;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: Roboto-Medium;
+  line-height: 20px;
+}
+.from_product {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 600;
+  bottom: 0;
+}
+.from_product_center {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.from_product_edit {
+  width: 900px;
+  height: 3200px;
+  background-color: #eeeeee;
+  margin: 138px auto auto auto;
+}
+
+.commodity_information {
+  width: 100%;
+  height: 20px;
+  background: #dddddd;
+  box-shadow: inset 0 -1px 0 #cccccc;
+  font-weight: 800;
+}
+.s {
+  margin: 25px auto;
+}
+.Sensor {
+  width: calc(100% - 100px);
+  margin: 0 auto;
+}
+tr {
+  border-bottom: 1svb red;
+}
+.from_product_center + .commodity_information tr {
+  color: #495057;
+  border-bottom: 1px solid red;
+}
+.commodity_information label {
+  margin-left: 20px;
+}
+.edit_li {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 900px;
+  z-index: 3000;
+  background-color: #ccc1c1;
+}
+.edit_li li {
+  margin: 0 6px;
+}
+.hover_infor:hover {
+  background: #495057;
+}
+.X_hover:hover {
+  color: #ccc1c1;
+}
+.edit_lii img {
+  margin-top: 5px;
+  border: 1px solid black;
+}
+.from_product {
+  display: none;
+}
+.product {
+  width: 200px;
+  height: 100px;
+}
+.tt {
+  margin: -3px 28px 11px 48px;
+}
+.edit_lii {
+  overflow: scroll;
+  height: 500px;
+}

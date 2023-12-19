@@ -1,0 +1,214 @@
+.horizontal_menu {
+  width: 100%;
+  height: 36px;
+  background: black;
+}
+img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.horizontal_menu_in {
+  display: flex;
+}
+.horizontal_menu li a {
+  color: white;
+}
+li {
+  list-style: none;
+  cursor: pointer;
+}
+.horizontal_menu a {
+  line-height: 35px;
+}
+.horizontal_menu_in span {
+  margin-left: 2px;
+}
+.ul_infor {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 1200px;
+  cursor: pointer;
+}
+.phone {
+  position: relative;
+}
+.fas,
+.fab {
+  font-size: 17px;
+}
+.price_red {
+  color: red;
+}
+// phone
+.infor_phone {
+  position: absolute;
+  width: 1150px;
+  height: auto;
+  display: none;
+  // display: flex;
+  background-color: white;
+  left: -3px;
+  top: 36px;
+  animation-name: example1;
+  animation-duration: 0.5s;
+  box-shadow: 1px 2px 7px black;
+}
+.phone:hover .infor_phone {
+  display: flex;
+}
+@keyframes example1 {
+  0% {
+    bottom: 0px;
+    top: 100px;
+  }
+  100% {
+    top: 24px;
+    top: 35px;
+  }
+}
+.infor_phone_left {
+  width: 28%;
+  border-right: 1px solid #e3e3e3;
+}
+.ul_infor span {
+  margin-left: 5px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #fff;
+  // font-family: "Times New Roman", Times, serif;
+}
+.flex_ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.hover:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+.manufacturer {
+  font-size: 12px;
+  font-weight: 700;
+  color: black;
+  text-transform: uppercase;
+  line-height: 40px;
+  margin-left: 20px;
+}
+.flex_ul li {
+  font-size: 13px;
+  color: #3d3d3d;
+}
+.flex_ul li:hover {
+  opacity: 0.7;
+}
+.infor_phone_center {
+  width: 15%;
+  border-right: 1px solid #e3e3e3;
+}
+.infor_phone_center ul li {
+  font-size: 13px;
+  color: #3d3d3d;
+}
+.price {
+  font-size: 12px;
+  font-weight: 700;
+  color: black;
+  text-transform: uppercase;
+  line-height: 40px;
+  margin-left: 10px;
+}
+.ul_price {
+  margin-left: 8px;
+}
+.ul_price li:hover {
+  opacity: 0.7;
+}
+.infor_phone_right {
+  width: 29%;
+  border-right: 1px solid #e3e3e3;
+}
+.bestseller {
+  font-size: 12px;
+  font-weight: 700;
+  color: black;
+  text-transform: uppercase;
+  line-height: 40px;
+  margin-left: 20px;
+}
+.img_phone {
+  display: flex;
+}
+.img_phone span {
+  color: black;
+}
+.img_phone img {
+  width: 100px;
+  height: 100px;
+  margin-left: 20px;
+}
+.img_bestseller p {
+  font-size: 18px;
+  font-weight: 300;
+  margin-left: 5px;
+  margin-top: 8px;
+}
+.name_black {
+  color: black;
+  font-weight: 300;
+  margin-left: 5px;
+}
+.img_right {
+  width: 28%;
+  border-right: 1px solid #e3e3e3;
+}
+.img_margin img {
+  content: url("https://images.fpt.shop/unsafe/fit-in/248x248/filt…ds/Originals/2023/11/13/638354842660668434_H4.png");
+  width: 200px;
+  height: 200px;
+}
+// laptop
+.laptop_hover {
+  position: relative;
+}
+.infor_laptop {
+  position: absolute;
+  width: 1150px;
+  height: auto;
+  display: none;
+  // display: flex;
+  background-color: white;
+  left: -100px;
+  top: 36px;
+  animation-name: example1;
+  animation-duration: 0.5s;
+  box-shadow: 1px 2px 7px black;
+}
+.laptop_hover:hover .infor_laptop {
+  display: flex;
+}
+.b {
+  margin-left: -35px;
+}
+// Hãng sản xuất
+.manufacturer_hover {
+  position: relative;
+}
+.infor_manufacturer {
+  position: absolute;
+  width: 1150px;
+  height: auto;
+  display: none;
+  // display: flex;
+  background-color: white;
+  left: -193px;
+  top: 36px;
+  animation-name: example1;
+  animation-duration: 0.5s;
+  box-shadow: 1px 2px 7px black;
+}
+.manufacturer_hover:hover .infor_manufacturer {
+  display: flex;
+}

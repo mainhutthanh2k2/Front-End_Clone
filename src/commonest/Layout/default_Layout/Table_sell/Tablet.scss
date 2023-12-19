@@ -1,0 +1,90 @@
+.Outstanding_Tablet {
+  width: 1145px;
+  height: 825px;
+  margin: 0 auto;
+  background: white;
+}
+.Outstanding_tablet_center,
+.Outstanding_phone_product {
+  margin: 20px 0 0 20px;
+}
+.Outstanding_tablet_center img {
+  width: 1145px;
+  height: 200px;
+}
+.table_Outstanding_phone {
+  margin-top: 20px;
+  width: 1145px;
+  height: auto;
+  background-color: #eeeeee;
+}
+.phone_title {
+  padding: 20px 0px 0px 25px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+.infor_product {
+  margin: 20px;
+}
+.price_product {
+  width: 130px;
+  height: 28px;
+  border-radius: 15px;
+  background-color: #ef8573;
+  text-align: center;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  overflow: hidden;
+  z-index: 1;
+  color: #fff;
+}
+.name_productt {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: normal;
+  color: #474c51;
+  margin-bottom: 10px;
+  z-index: 10;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+.name_productt:hover {
+  opacity: 0.8;
+}
+.cdt-product__config__param {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  color: #212529;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cdt-product__config__param span {
+  padding: 5px;
+}
+.buy_now {
+  background: #cd1818;
+  border-radius: 2px;
+  // display: flex;
+  display: none;
+  height: 31px;
+  /* margin: 72px; */
+  margin: 16px 49px 0px 52px;
+}
+.buy_now span {
+  color: #fff;
+  line-height: 30px;
+  margin: 0px 0px 0px 35px;
+}
+.img_Promotion_children:hover .buy_now {
+  display: flex;
+}
+.buy_now:hover {
+  background: #ae1427;
+}

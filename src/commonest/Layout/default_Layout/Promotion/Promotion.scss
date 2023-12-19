@@ -1,0 +1,70 @@
+.Promotion_main {
+  width: 1145px;
+  height: auto;
+  margin: 0 auto;
+}
+img {
+  border-radius: 8px;
+}
+.Promotion_center {
+  width: 100%;
+}
+.imgg {
+  width: 1145px;
+  height: 70px;
+  border-radius: 6px;
+  border: 1px solid gray;
+  margin: 0px 0px 0px 20px;
+}
+.Promotion_hot {
+  margin-top: 20px;
+  width: 1145px;
+  height: auto;
+  background-color: #eeeeee;
+
+  margin: 0px 0px 0px 20px;
+}
+.Promotion_hot p {
+  font-size: 20px;
+  font-weight: 600;
+  color: red;
+  padding: 22px;
+}
+.fire {
+  margin-right: 5px;
+}
+.img_Promotion {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.img_Promotion_children {
+  width: 275px;
+  height: 312px;
+
+  position: relative;
+  background-color: white;
+}
+.hover_scale img {
+  width: 135px;
+  height: 100px;
+  position: absolute;
+  inset: 60px 0px 7px 50px;
+}
+.img_Promotion_children p {
+  color: black;
+  position: absolute;
+  top: 168px;
+}
+.hover_scale {
+  position: relative;
+  width: 238px;
+  height: 169px;
+  margin: 10px auto;
+  display: flex;
+  background-color: red;
+  transition: 0.4s ease;
+}
+.hover_scale:hover {
+  transform: scale(1.03);
+}

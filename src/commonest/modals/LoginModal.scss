@@ -1,0 +1,96 @@
+.modal-content {
+    .modal-header {
+        .modal-title {
+            font-weight: bold;
+        }
+    }
+
+    .modal-body {
+        text-align: center;
+
+        .img {
+            height: 160px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        p {
+            margin: 10px 0;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+        .container_modal {
+            justify-content: space-between;
+
+            .otp_input {
+                $width: 60px;
+                min-width: $width;
+                min-height: $width;
+                margin: 20px 0;
+                border-radius: 12px;
+                font-size: 24px;
+                border: 1px solid #d2d2d2;
+                background-color: #f7f7f7;
+                position: relative;
+                font-family: sans-serif;
+                font-weight: 500;
+
+                &:focus {
+                    background-color: #fff;
+                }
+            }
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .input_txt {
+            margin: 20px 0;
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 18px;
+
+            &::placeholder {
+                color: #aeaeae;
+            }
+        }
+    }
+
+    .modal-footer {
+        flex-direction: column;
+    }
+
+    .text_special {
+        text-align: center;
+        color: #0664f9;
+        position: relative;
+
+        &:hover {
+            cursor: pointer;
+
+            &::after {
+                width: 100%;
+            }
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            width: 0;
+            position: absolute;
+            left: 50%;
+            bottom: -2px;
+            transform: translateX(-50%);
+            border-top: 1px solid blue;
+            transition: all linear 0.2s;
+        }
+
+        i {
+            margin-right: 4px;
+        }
+    }
+}

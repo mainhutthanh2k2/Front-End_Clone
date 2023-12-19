@@ -1,0 +1,83 @@
+.body_main {
+  width: 1145px;
+  margin: 0 auto;
+  height: 900px;
+}
+img {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.banner_body {
+  width: 1145px;
+  height: 250px;
+  margin: 0px 0px 0px 20px;
+}
+.flex_banner {
+  display: flex;
+  width: 1145px;
+  margin: 0px 0px 0px 20px;
+}
+.flex_banner_left {
+  width: 828px;
+  height: 300px;
+  border: 1px solid #e3e3e3;
+}
+.flex_banner_right {
+  width: 310px;
+  height: 300px;
+  border: 1px solid #e3e3e3;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+.voucher span {
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+.img_voucher {
+  width: 65px;
+  height: 45px;
+}
+.flex_voucher {
+  display: flex;
+}
+// product img
+.product_img {
+  width: 1100px;
+  height: 100px;
+}
+.product_img {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1145px;
+  margin: 0px 0px 0px 20px;
+}
+.img_product {
+  width: 190px;
+  height: 160px;
+}
+.img_product:hover {
+  box-shadow: 0px 2px 5px black;
+}
+.product_img img {
+  position: absolute;
+  width: 46px;
+  height: 46px;
+  margin: 12px;
+}
+// background: #f4f4f4;
+.border_radius {
+  position: relative;
+  width: 70px;
+  height: 71px;
+  background: red;
+  margin-left: 56px;
+  margin-top: 27px;
+  border-radius: 50%;
+}
+.img_product p {
+  margin: 0px;
+  text-align: center;
+}
