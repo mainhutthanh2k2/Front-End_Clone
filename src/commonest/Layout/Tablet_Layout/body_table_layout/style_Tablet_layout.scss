@@ -2,16 +2,16 @@
   width: 1145px;
   height: auto;
   margin: 10px auto auto auto;
-  background: #f8f9fa;
+  background: white;
 }
 .Home {
   color: blue;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 .banner {
   margin-top: 10px;
   width: 100%;
-  height: 200px;
+  height: auto;
 }
 .img_banner {
   width: 1125px;
@@ -74,7 +74,6 @@
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-bottom: none;
-  justify-content: space-between;
   border-radius: 9px;
 }
 .smart_phone {
@@ -85,8 +84,9 @@
   transition: 1s linear ease-in;
 }
 .smart_phone img {
-  width: 100%;
-  height: auto;
+  width: 175px;
+  height: 145px;
+  margin-left: 45px;
   transition: 0.4s ease-in-out;
 }
 .smart_phone:hover {
@@ -103,15 +103,17 @@
   font-weight: 700;
   line-height: normal;
   color: #474c51;
-  margin: 13px 0px 0px 10px;
+  margin: 13px 0px 20px 10px;
 }
 .smart_phone h2 {
   font-size: 17px;
   font-weight: 700;
   line-height: normal;
   color: red;
-  margin: 13px 0px 0px 10px;
+  padding: 5px;
+  margin: 13px 0px 20px 10px;
 }
+
 .smart_phone ul {
   display: flex;
   flex-wrap: wrap;
@@ -122,6 +124,8 @@
   line-height: 19px;
   color: #6c757d;
   margin-right: 10px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: help;
 }
 .dad_now_buy {

@@ -5,20 +5,15 @@ import {
   Tablet_Layout,
   Alone_product,
   MainLayout,
+  Search,
 } from "~/commonest/Layout";
 import Home from "~/Pages/Home/home";
 import Smartphone from "~/Pages/Smart_phone/Smart_phone";
 import Laptop from "~/Pages/LapTop/Laptop";
 import Tablet from "~/Pages/Tablet/Tablet";
 import Following from "~/Pages/Following/following";
-import Upload from "~/Pages/upload/upload";
-import Header from "~/Pages/HeaderOnly/headerOnly";
-import Search from "~/Pages/Search/Search";
-import {
-  ProductManager,
-  CategoryManager,
-  CustomerManager,
-} from "~/Pages/Admin";
+import Container_search from "~/Pages/Search/Seearch";
+import {ProductManager, CategoryManager, CustomerManager} from "~/Pages/Admin";
 
 // public router
 const publicRouter = [
@@ -26,6 +21,11 @@ const publicRouter = [
     path: "/",
     component: Home,
     layout: Default_Layout,
+  },
+  {
+    path: "/search/:name",
+    component: Container_search,
+    layout: Search,
   },
   {
     path: "/following",
@@ -69,4 +69,4 @@ const publicRouter = [
   },
 ];
 const privateRouter = [];
-export { publicRouter, privateRouter };
+export {publicRouter, privateRouter};

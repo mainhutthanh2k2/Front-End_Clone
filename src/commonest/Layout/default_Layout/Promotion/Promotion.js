@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styles from "./Promotion.scss";
 import Api_product from "~/API/ProductAPI";
 const Styles = classNames.bind(styles);
@@ -21,7 +21,10 @@ function Promotion() {
         <div className={Styles("Promotion_img")}>
           <NavLink to="/headerOnly">
             <div className={Styles("imgg")}>
-              <img src="https://images.fpt.shop/unsafe/fit-in/1200x100/fil…nals/2023/12/1/638370210308759071_H7_1200x100.png" />
+              <img
+                src="https://images.fpt.shop/unsafe/fit-in/1200x100/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/12/18/638384882225847951_H7_1200x100.png"
+                style={{width: "100%"}}
+              />
             </div>
           </NavLink>
         </div>
@@ -36,12 +39,12 @@ function Promotion() {
               product_hot.map((e, index) => {
                 return (
                   <div className={Styles("img_Promotion_children")} key={index}>
-                    <NavLink to="/laptop">
+                    <NavLink to={`/product/${e._id}`}>
                       <div className={Styles("hover_scale")}>
                         <img src={e.images} />
                       </div>
                       <p>
-                        <div>{e.name}</div>
+                        <div>{e.name.split("/", 4)}</div>
                         <div className={Styles("price_productt")}>
                           {Intl.NumberFormat("vi", {
                             style: "currency",

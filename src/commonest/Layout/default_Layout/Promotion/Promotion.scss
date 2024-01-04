@@ -1,5 +1,5 @@
 .Promotion_main {
-  width: 1145px;
+  width: 1160px;
   height: auto;
   margin: 0 auto;
 }
@@ -10,18 +10,17 @@ img {
   width: 100%;
 }
 .imgg {
-  width: 1145px;
-  height: 70px;
+  width: 100%;
+  height: auto;
   border-radius: 6px;
   border: 1px solid gray;
-  margin: 0px 0px 0px 20px;
+  margin: 10px 0px 10px 20px;
 }
 .Promotion_hot {
   margin-top: 20px;
-  width: 1145px;
+  width: 100%;
   height: auto;
   background-color: #eeeeee;
-
   margin: 0px 0px 0px 20px;
 }
 .Promotion_hot p {
@@ -33,23 +32,38 @@ img {
 .fire {
   margin-right: 5px;
 }
+.price_productt {
+  width: 130px;
+  height: 28px;
+  border-radius: 15px;
+  background-color: #ef8573;
+  text-align: center;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  overflow: hidden;
+  z-index: 1;
+  color: #fff;
+}
+
 .img_Promotion {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: wrap;
+  margin-left: 20px;
 }
 .img_Promotion_children {
   width: 275px;
-  height: 312px;
-
+  height: 325px;
   position: relative;
+  margin: 0px 7px 5px 0px;
   background-color: white;
 }
 .hover_scale img {
-  width: 135px;
-  height: 100px;
+  width: 180px;
+  height: 151px;
   position: absolute;
-  inset: 60px 0px 7px 50px;
+  inset: 5px 0px 7px 23px;
 }
 .img_Promotion_children p {
   color: black;
@@ -62,7 +76,7 @@ img {
   height: 169px;
   margin: 10px auto;
   display: flex;
-  background-color: red;
+  background-color: white;
   transition: 0.4s ease;
 }
 .hover_scale:hover {

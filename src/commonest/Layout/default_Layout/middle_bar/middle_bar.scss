@@ -50,7 +50,7 @@ li {
   display: none;
   // display: flex;
   background-color: white;
-  left: -3px;
+  left: -9px;
   top: 36px;
   animation-name: example1;
   animation-duration: 0.5s;
@@ -130,6 +130,9 @@ li {
   width: 29%;
   border-right: 1px solid #e3e3e3;
 }
+.infor_phone_right ul {
+  padding-left: 0px;
+}
 .bestseller {
   font-size: 12px;
   font-weight: 700;
@@ -164,11 +167,6 @@ li {
   width: 28%;
   border-right: 1px solid #e3e3e3;
 }
-.img_margin img {
-  content: url("https://images.fpt.shop/unsafe/fit-in/248x248/filt…ds/Originals/2023/11/13/638354842660668434_H4.png");
-  width: 200px;
-  height: 200px;
-}
 // laptop
 .laptop_hover {
   position: relative;
@@ -180,7 +178,7 @@ li {
   display: none;
   // display: flex;
   background-color: white;
-  left: -100px;
+  left: -105px;
   top: 36px;
   animation-name: example1;
   animation-duration: 0.5s;

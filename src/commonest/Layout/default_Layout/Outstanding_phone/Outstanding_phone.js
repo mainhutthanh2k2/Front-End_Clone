@@ -1,43 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import {NavLink} from "react-router-dom";
 import classNames from "classnames/bind";
-import { NavLink } from "react-router-dom";
-import Apiproduct from "~/API/ProductAPI";
-import stylee from "./Outstanding_phone.scss";
-import Tippy from "@tippyjs/react";
-const Styles = classNames.bind(stylee);
+import style from "./Outstanding_phone.scss";
+import Taplet_Api from "~/API/ProductAPI";
+const Styles = classNames.bind(style);
 function Outstanding_phone() {
-  const [product, setProduct] = React.useState({});
-  useEffect(() => {
-    const aa = async () => {
-      const APi = await Apiproduct.getProducts({
+  const [Taplet, settaplet] = React.useState({});
+  React.useEffect(() => {
+    const Taplett = async () => {
+      let Seen_Taplet = await Taplet_Api.getProducts({
         category: "PH",
       });
-      setProduct(APi);
+      while (Seen_Taplet.length < 5) {
+        Seen_Taplet = Seen_Taplet.concat(Seen_Taplet);
+      }
+      settaplet(Seen_Taplet);
     };
-    aa().catch(console.error);
+    Taplett().catch(console.error);
   }, []);
   return (
     <div className={Styles("Outstanding_phone")}>
-      <div className={Styles("Outstanding_phone_centerr")}>
-        <img src="https://images.fpt.shop/unsafe/filters:quality(90)…/Originals/2023/11/30/638369392838333568_html.png" />
+      <div className={Styles("Outstanding_tablet_center")}>
+        <img src="https://images.fpt.shop/unsafe/fit-in/1168x97/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/12/11/638379152567631666_D (5).png" />
       </div>
       <div className={Styles("Outstanding_phone_product")}>
-        <div className={Styles("table_Outstanding_phonee")}>
+        <div className={Styles("table_Outstanding_phone")}>
           <p className={Styles("phone_title")}>ĐIỆN THOẠI NỔI BẬT</p>
-          <div className={Styles("img_Promotionn")}>
-            {product &&
-              product.length > 0 &&
-              product.map((e, index) => {
+          <div className={Styles("img_Promotion")}>
+            {Taplet &&
+              Taplet.length > 0 &&
+              Taplet.map((e, index) => {
                 return (
-                  <div className={Styles("img_Promotion_children")}>
-                    <div className={Styles("hover_scale")} key={index}>
+                  <div className={Styles("img_Promotion_children")} key={index}>
+                    <div className={Styles("hover_scale")}>
                       <img src={e.images} />
                     </div>
                     <p className={Styles("infor_product")}>
-                      <NavLink to="/product">
+                      <NavLink to={`/product/${e._id}`}>
                         <div className={Styles("name_productt")}>{e.name}</div>
                         <div className={Styles("price_product")}>
-                          {" "}
                           {Intl.NumberFormat("vi", {
                             style: "currency",
                             currency: "VND",

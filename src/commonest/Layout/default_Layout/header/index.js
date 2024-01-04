@@ -3,44 +3,44 @@ import classNames from "classnames/bind";
 import Tippy from "@tippyjs/react/headless";
 
 import LoginModal from "~/commonest/modals/LoginModal";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { logout } from "~/store/slice/userSlice";
-import _ from "lodash";
+import {useSelector, useDispatch} from "react-redux";
+import {NavLink} from "react-router-dom";
+import {logout} from "~/store/slice/userSlice";
+import _, {values} from "lodash";
 
 // import { Link } from "react-router-dom";
-import "tippy.js/dist/tippy.css"; // optional
-
 import "tippy.js/dist/tippy.css"; // optional
 import style from "./style_header.scss";
 const Styles = classNames.bind(style);
 
 function Header() {
   const get_localStorage = JSON.parse(localStorage.getItem("searchs")); // lay du lieu tu localStorage ra
-
   const [search, set_count] = React.useState("");
   const [searchs, set_counts] = React.useState(get_localStorage);
   const [showModal, setShowModal] = React.useState(false);
+  //
   const user = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
-
   const handleCloseModal = () => setShowModal(false);
   const handleShowModal = () => setShowModal(true);
-
-  const handlesubmit = () => {
-    set_counts((e) => {
-      const new_search = (e && [...e, search]) || [search];
-      const string = JSON.stringify(new_search);
-      localStorage.setItem("searchs", string); // them vao localStorage de luu ket qua tim kiem
-      return new_search;
-    });
-    set_count("");
+  console.log(set_count.data);
+  const handlesubmit = (product) => {
+    if (search === "") {
+    } else {
+      set_counts((e) => {
+        const new_search = (e && [...e, search]) || [search];
+        const string = JSON.stringify(new_search);
+        localStorage.setItem("searchs", string); // them vao localStorage de luu ket qua tim kiem
+        const product = search;
+        return new_search;
+      });
+      set_count("");
+    }
   };
-
   const handleModalLogin = (e) => {
     e.preventDefault();
   };
-
+  const Search = (search) => {};
   return (
     <header className={Styles("header_web_fpt")}>
       <div className={Styles("header_web_fpt_one")}>
@@ -62,8 +62,19 @@ function Header() {
                 <ul className={Styles("ul_search")}>
                   {searchs &&
                     searchs.map((result, index) => (
-                      <li key={index}> {result}</li>
+                      <li key={index}>{result}</li>
                     ))}
+                  {/* {searchs.filter((value) => {
+                    if (value == "") {
+                      return value;
+                    } else if (
+                      searchs.map((e) => {
+                        e.toLowerCase().includes(set_count.value);
+                      })
+                    ) {
+                      return value;
+                    }
+                  })} */}
                 </ul>
               </div>
             )}
@@ -78,10 +89,19 @@ function Header() {
                 value={search}
                 onChange={(e) => set_count(e.target.value)}
               />
-
               <button className={Styles("button")} onClick={handlesubmit}>
-                <i className="fas fa-search"></i>
+                <NavLink to={(search && `/search/${search}`) || "#"}>
+                  <i className="fas fa-search"></i>
+                </NavLink>
               </button>
+              <span
+                className={Styles("Clear_search")}
+                onClick={(e) => {
+                  set_count("");
+                }}
+              >
+                X
+              </span>
             </form>
           </Tippy>
           <ul className={Styles("ul_header")}>
@@ -126,7 +146,6 @@ function Header() {
             <li>
               <a href="">
                 <i className="fas fa-file-invoice-dollar icon"></i>
-
                 <p>Thanh toán & tiện ích</p>
               </a>
             </li>

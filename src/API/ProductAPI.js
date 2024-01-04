@@ -28,14 +28,17 @@ const ProductAPI = {
     try {
       let conditionStr = "";
 
+      // if (!_.isEmpty(conditionObj)) {
+      //   Object.keys(conditionObj).forEach((key) => {
+      //     conditionStr += key + "=" + conditionObj[key];
+      //   });
+      // }
       if (!_.isEmpty(conditionObj)) {
         Object.keys(conditionObj).forEach((key) => {
-          conditionStr += key + "=" + conditionObj[key];
+          conditionStr += key + "=" + conditionObj[key] + "&";
         });
       }
-
       const res = await axios.get(`/product?${conditionStr}`);
-
       if (res?.data?.status === 0) {
         return res.data?.data;
       }
@@ -75,7 +78,7 @@ const ProductAPI = {
       }
 
       const data = {
-        filter: { _id },
+        filter: {_id},
         update: productUpdate,
       };
 

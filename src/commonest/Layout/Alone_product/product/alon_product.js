@@ -1,138 +1,81 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import {useState, useEffect} from "react";
+import {useParams, NavLink} from "react-router-dom";
 // import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import classNames from "classnames/bind";
-import { NavLink } from "react-router-dom";
+import _ from "lodash";
 import stylee from "./style_product.scss";
 import ProductAPI from "~/API/ProductAPI";
-import _ from "lodash";
-
+import lodash from "lodash";
 const Styles = classNames.bind(stylee);
-
 function Alone_product() {
-  var $ = document.querySelector.bind(document);
   const [product, setProduct] = useState({});
-
   const params = useParams();
-
+  const [text, setText] = React.useState("");
   useEffect(() => {
-    handleGetProduct();
+    const s = async () => {
+      await handleGetProduct();
+    };
+    s().catch(console.error);
   }, []);
-
   const handleGetProduct = async () => {
-    const resProduct = await ProductAPI.getProduct({ _id: params.id });
+    const resProduct = await ProductAPI.getProduct({_id: params.id});
     setProduct(resProduct);
+    handleinforProduct(resProduct);
   };
-
-  console.log(product);
-
-  // function seen_product() {
-  //   // // sự kiện hiện trang sản phẩm
-  //   $(".seen_specifications").onclick = () => {
-  //     $(".from_product").style.display = "block";
-  //   };
-  // }
-  // sự kiện tắt bảng sản phẩm
-  // $(".X_hover").onclick = () => {
-  //   $(".from_product").style.display = "none";
-  // };
+  const handleinforProduct = (productinfor) => {
+    const ArrayText = productinfor.specifications?.split(";").map((e) => {
+      return e?.split(":");
+    });
+    const cutString = ArrayText?.reduce((accumulator, currentValue) => {
+      if (Array.isArray(currentValue)) {
+        return `${accumulator}<tr><td>${currentValue[0]}</td><td>${currentValue[1]}</td></tr>`;
+      }
+    }, "");
+    setText(cutString);
+  };
+  console.log(text);
   return (
     <div className={Styles("s")}>
-      <div style={{ width: "400px" }}>
+      <div style={{width: "400px"}}>
+        <NavLink to="/">Trang chủ/</NavLink>
         <ul className={Styles("ss")}>
-          <li>
-            <input
-              type="radio"
-              name="seen_iphone"
-              id="iphone_white"
-              class="none"
-            />
-            <img
-              src="./Source/img/14seri_trang.jpg"
-              alt=""
-              width="400px"
-              style={{ backgroundColor: "#EEEEEE" }}
-              class="seen_iphone_white"
-            />
-
-            <input
-              type="radio"
-              name="seen_iphone"
-              id="iphone_black"
-              class="none"
-            />
-            <img
-              src="./Source/img/14seri_den.jpg"
-              alt=""
-              width="400px"
-              style={{ backgroundColor: "#EEEEEE" }}
-              class="seen_iphone_black"
-            />
-
-            <input
-              type="radio"
-              name="seen_iphone"
-              id="iphone_purple"
-              class="none"
-            />
-            <img
-              src="./Source/img/14seri_tim.jpg"
-              alt=""
-              width="400px"
-              style={{ backgroundColor: "#EEEEEE" }}
-              class="seen_iphone_purple"
-            />
-
-            <input
-              type="radio"
-              name="seen_iphone"
-              id="iphone_pink"
-              class="none"
-            />
-            <img
-              src="./Source/img/iphone13hongNhat.jpg"
-              alt=""
-              width="400px"
-              style={{ backgroundColor: "#EEEEEE" }}
-              class="seen_iphone_pink"
-            />
-
-            <input
-              type="radio"
-              name="seen_iphone"
-              id="iphone_yellow"
-              class="none"
-            />
-            <img
-              src="./Source/img/14seri_vang.jpg"
-              alt=""
-              width="400px"
-              style={{ backgroundColor: "#EEEEEE" }}
-              class="seen_iphone_yellow"
-            />
-          </li>
+          {product && !lodash.isEmpty(product) && (
+            <li>
+              <img
+                src={product.images}
+                alt=""
+                style={{
+                  width: "400px",
+                  height: "auto",
+                }}
+              />
+            </li>
+          )}
         </ul>
       </div>
-      <div style={{ width: "400px" }}>
-        <label for="" stylee="ll">
-          Iphone Store
-        </label>
-        <p style={{ margin: "40px 0px 20px 5p" }}>
-          [Sale 12.12] iPhone 13 13 Pro 13 Pro Max - Hàng chính hãng
+      <div style={{width: "400px"}}>
+        {product && !lodash.isEmpty(product) && (
+          <label className={Styles("lii")}>
+            {product.name.split("/", 1)} Hàng chính hãng
+          </label>
+        )}
+        <p style={{margin: "40px 0px 20px 5p"}}>
+          Thương hiệu: FPT | <NavLink to="">Chi tiết cấu hình</NavLink>
         </p>
-        <p style={{ margin: "40px 0px 20px 5p" }}>
-          Thương hiệu: APP | <NavLink href="">Chi tiết cấu hình</NavLink>
-        </p>
-        <img src="./Source/img/bannersale.png" alt="" width="400px" />
+        <img
+          src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/2015/Tin-Tuc/QuangPT4/25-1-2017/lich-phuc-vu-tet-dinh-dau-2017-fpt-shop-3.jpg"
+          alt=""
+          width="400px"
+        />
         <label>Trả góp:</label>
-        <label for="" style={{ fontSize: "14px" }}>
+        <label for="" style={{fontSize: "14px"}}>
           Trả góp 0% trong 12 tháng chỉ với{" "}
-          <h7 style={{ color: "red" }}>2.082.500</h7> mỗi tháng
+          <h7 style={{color: "red"}}>2.082.500</h7> mỗi tháng
         </label>
         <div>
-          <label for="">Nhóm màu:</label>
+          {/* <label for="">Nhóm màu:</label>
           <input
             type="radio"
             name="img_color"
@@ -157,8 +100,8 @@ function Alone_product() {
           <input type="radio" name="img_color" id="green" class="color_img" />
           <div class="green">Xanh Lá</div>
           <input type="radio" name="img_color" id="blue" class="color_img" />
-          <div class="blue">Xanh Dương</div>
-          <ul>
+          <div class="blue">Xanh Dương</div> */}
+          {/* <ul>
             <li>
               <label for="img_black">
                 <img
@@ -211,18 +154,18 @@ function Alone_product() {
                 />
               </label>
             </li>
-          </ul>
+          </ul> */}
 
           <div>
-            <label for="">Dung lượng lưu trữ:</label>
+            {/* <label for="">Dung lượng lưu trữ:</label>
             <input type="radio" name="data" id="hover_128gb" class="checked" />
             <div class="data_128">128gB</div>
             <input type="radio" name="data" id="hover_256gb" class="checked" />
             <div class="data_256">256gB</div>
             <input type="radio" name="data" id="hover_512gb" class="checked" />
             <div class="data_512">512gB</div>
-            <ul style={{ display: "flex" }}>
-              <li style={{ margin: "0 2px 0 0" }}>
+            <ul style={{display: "flex"}}>
+              <li style={{margin: "0 2px 0 0"}}>
                 <label
                   for="hover_128gb"
                   style={{
@@ -234,7 +177,7 @@ function Alone_product() {
                   128GB
                 </label>
               </li>
-              <li style={{ margin: "0 2px 0 0" }}>
+              <li style={{margin: "0 2px 0 0"}}>
                 <label
                   for="hover_256gb"
                   style={{
@@ -246,7 +189,7 @@ function Alone_product() {
                   256GB
                 </label>
               </li>
-              <li style={{ margin: "0 2px 0 0" }}>
+              <li style={{margin: "0 2px 0 0"}}>
                 <label
                   for="hover_512gb"
                   style={{
@@ -258,182 +201,63 @@ function Alone_product() {
                   512GB
                 </label>
               </li>
-            </ul>
-            <div style={{ textAlign: "center" }}>
-              <button
-                style={{ border: "none", width: "160px" }}
-                classNames={Styles("button_buy")}
-              >
-                Mua ngay{" "}
-              </button>
-              <button style={{ border: "none " }} class="button_add_cart">
-                Thêm vào giỏ hàng
-              </button>
+            </ul> */}
+            <div style={{textAlign: "center", marginTop: "15px"}}>
+              <NavLink to="" className={Styles("buy_noww")}>
+                Mua ngay
+              </NavLink>
+              <NavLink to="" className={Styles("add_cart")}>
+                Thêm vào giỏ hàng{" "}
+              </NavLink>
             </div>
           </div>
         </div>
       </div>
-      <div style={{ width: "400px" }}>
+      <div style={{width: "400px"}}>
+        <p className={Styles("sc")}>Thông số kỹ thuật</p>
         <table
           className={Styles("border_table")}
-          style={{ marginLeft: "16px" }}
+          style={{marginLeft: "16px"}}
+          dangerouslySetInnerHTML={{__html: text}}
+        />
+        <lable
+          className={Styles("seen_specifications")}
+          style={{
+            color: "blue",
+            cursor: "pointer",
+            padding: "15px 0px 0px 20px",
+          }}
         >
-          <p className={Styles("sc")}>Thông số kỹ thuật</p>
-          <tr>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              Màn hình:
-            </td>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              {" "}
-              6.1 inch, OLED, Super Retina XDR, 2532 x 1170 Pixels
-            </td>
-          </tr>
-          <tr>
-            <td class="edit_tr" style={{ fontWeight: "400" }}>
-              Camera sau:
-            </td>
-            <td class="edit_tr"> 12.0 MP + 12.0 MP</td>
-          </tr>
-          <tr>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              Camera Selfie:
-            </td>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              {" "}
-              12.0 MP
-            </td>
-          </tr>
-          <tr>
-            <td class="edit_tr">RAM:</td>
-            <td class="edit_tr"> 4 GB</td>
-          </tr>
-          <tr>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              Bộ nhớ:
-            </td>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              128 GB
-            </td>
-          </tr>
-          <tr>
-            <td class="edit_tr">CPU:</td>
-            <td class="edit_tr">Apple A15 Bionic</td>
-          </tr>
-          <tr>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              Dung lượng pin:
-            </td>
-            <td class="edit_tr" style={{ backgroundColor: "#EEEEEE" }}>
-              3225 mAh
-            </td>
-          </tr>
-
-          <tr>
-            <td
-              className={Styles("seen_specifications")}
-              colsPan="2"
-              style={{ color: "blue", cursor: "pointer" }}
-            >
-              Xem chi tiết thông số kỹ thuật
-            </td>
-          </tr>
-        </table>
+          Xem chi tiết thông số kỹ thuật
+        </lable>
       </div>
-      <div class="img_list_anh">
-        <div
-          style={{ backgroundColor: "gray", width: "400px", height: "1px" }}
-        ></div>
-        <ul className={Styles("cx")}>
-          <li>
-            <label for="iphone_white">
-              <img
-                src="./Source/img/14seri_trang.jpg"
-                alt=""
-                width="50px"
-                height="50px"
-                class="img_hover"
-                id="iphone_white"
-              />
-            </label>
-          </li>
-          <li>
-            <label for="iphone_black">
-              <img
-                src="./Source/img/14seri_den.jpg"
-                alt=""
-                width="50px"
-                height="50px"
-                class="img_hover"
-                id="iphone_black"
-              />
-            </label>
-          </li>
 
-          <li>
-            {" "}
-            <label for="iphone_purple">
-              <img
-                src="./Source/img/14seri_tim.jpg"
-                alt=""
-                width="50px"
-                height="50px"
-                class="img_hover"
-                id="iphone_purple"
-              />
-            </label>
-          </li>
-          <li>
-            <label for="iphone_pink">
-              <img
-                src="./Source/img/iphone15hong.png"
-                alt=""
-                width="50px"
-                height="50px"
-                class="img_hover"
-                id="iphone_pink"
-              />
-            </label>
-          </li>
-          <li>
-            <label for="iphone_yellow">
-              <img
-                src="./Source/img/14seri_vang.jpg"
-                alt=""
-                width="50px"
-                height="50px"
-                class="img_hover"
-                id="iphone_yellow"
-              />
-            </label>
-          </li>
-        </ul>
-      </div>
-      <div style={{ width: "1200px" }} id="Salient_features">
+      <div style={{width: "1200px"}} id="Salient_features">
         <p class="title">Mô tả sản phẩm iPhone seri - Hàng Chính Hãng VN/A</p>
         <p class="title">Iphone seri</p>
         <p class="title">Tính năng nổi bật</p>
         <ul>
-          <li class="dot" style={{ listStyle: "disc" }}>
+          <li class="dot" style={{listStyle: "disc"}}>
             DYNAMIC ISLAND RA MẮT TRÊN IPHONE 15 — Dynamic Island hiển thị linh
             động các cảnh báo và Hoạt Động Trực Tiếp, nhờ đó bạn sẽ không bỏ lỡ
             thông tin khi đang làm việc khác. Bạn có thể xem ai đang gọi đến,
             kiểm tra tình hình chuyến bay của bạn và hơn thế nữa.
           </li>
-          <li class="dot" style={{ listStyle: "disc" }}>
+          <li class="dot" style={{listStyle: "disc"}}>
             THIẾT KẾ SÁNG TẠO — iPhone 15 Plus sở hữu thiết kế bằng kính pha màu
             và nhôm bền bỉ. Và có khả năng chống tia nước, chống nước và chống
             bụi.1 Mặt trước Ceramic Shield bền chắc hơn mọi mặt kính điện thoại
             thông minh. Và màn hình Super Retina XDR 6,7” sáng gấp đôi dưới ánh
             mặt trời so với iPhone 14.
           </li>
-          <li class="dot" style={{ listStyle: "disc" }}>
+          <li class="dot" style={{listStyle: "disc"}}>
             CAMERA CHÍNH 48MP VỚI TELEPHOTO 2X — Camera Chính 48MP chụp ảnh với
             độ phân giải siêu cao. Vậy nên bạn có thể chụp được những bức ảnh
             nổi bật có độ chi tiết ấn tượng dễ dàng hơn bao giờ hết. Camera
             Telephoto với độ thu phóng quang học 2x giúp bạn bố cục ảnh chụp cận
             cảnh hoàn hảo.
           </li>
-          <li class="dot" style={{ listStyle: "disc" }}>
+          <li class="dot" style={{listStyle: "disc"}}>
             ĐƯỢC THIẾT KẾ ĐỂ TẠO NÊN KHÁC BIỆT — iPhone trang bị các biện pháp
             bảo vệ quyền riêng tư, cho bạn quyền kiểm soát dữ liệu của mình.
             iPhone được làm từ nhiều vật liệu tái chế hơn để giảm thiểu tác động
@@ -486,7 +310,7 @@ function Alone_product() {
               <div class="text_iphone">Iphone 14 Pro Max 128GB</div>
             </NavLink>
             <div class="price_buy">
-              <h7 class="price" style={{ color: "red", fontWeight: "bold" }}>
+              <h7 class="price" style={{color: "red", fontWeight: "bold"}}>
                 29.990.000
               </h7>
 
@@ -496,7 +320,7 @@ function Alone_product() {
             </div>
 
             <div class="evaluate">
-              <h8 class="evaluate_star" style={{ color: "orange" }}>
+              <h8 class="evaluate_star" style={{color: "orange"}}>
                 4.8 <i class="fa fa-star" aria-hidden="true"></i>
               </h8>
               <h9 className="total">(187)</h9>
@@ -511,7 +335,7 @@ function Alone_product() {
               <div class="text_iphone">Iphone 14 Pro Max 256GB</div>
             </a>
             <div class="price_buy">
-              <h7 class="price" style={{ color: "red", fontWeight: "bold" }}>
+              <h7 class="price" style={{color: "red", fontWeight: "bold"}}>
                 35.990.000
               </h7>
 
@@ -521,7 +345,7 @@ function Alone_product() {
             </div>
 
             <div class="evaluate">
-              <h8 class="evaluate_star" style={{ color: "orange" }}>
+              <h8 class="evaluate_star" style={{color: "orange"}}>
                 5.0 <i class="fa fa-star" aria-hidden="true"></i>
               </h8>
               <h9 class="total">(10)</h9>
@@ -536,7 +360,7 @@ function Alone_product() {
               <div class="text_iphone">Iphone 14 Pro Max 128GB</div>
             </a>
             <div class="price_buy">
-              <h7 class="price" style={{ color: "red", fontWeight: "bold" }}>
+              <h7 class="price" style={{color: "red", fontWeight: "bold"}}>
                 29.990.000
               </h7>
 
@@ -546,7 +370,7 @@ function Alone_product() {
             </div>
 
             <div class="evaluate">
-              <h8 class="evaluate_star" style={{ color: "orange" }}>
+              <h8 class="evaluate_star" style={{color: "orange"}}>
                 4.9 <i class="fa fa-star" aria-hidden="true"></i>
               </h8>
               <h9 class="total">(200)</h9>
@@ -561,7 +385,7 @@ function Alone_product() {
               <div class="text_iphone">Iphone 14 Pro Max 128GB</div>
             </a>
             <div class="price_buy">
-              <h7 class="price" style={{ color: "red", fontWeight: "bold" }}>
+              <h7 class="price" style={{color: "red", fontWeight: "bold"}}>
                 30.990.000
               </h7>
 
@@ -571,7 +395,7 @@ function Alone_product() {
             </div>
 
             <div class="evaluate">
-              <h8 class="evaluate_star" style={{ color: "orange" }}>
+              <h8 class="evaluate_star" style={{color: "orange"}}>
                 4.8 <i class="fa fa-star" aria-hidden="true"></i>
               </h8>
               <h9 class="total">(57)</h9>
@@ -586,7 +410,7 @@ function Alone_product() {
               <div class="text_iphone">Iphone 14 Pro Max 512GB</div>
             </NavLink>
             <div class="price_buy">
-              <h7 class="price" style={{ color: "red", fontWeight: "bold" }}>
+              <h7 class="price" style={{color: "red", fontWeight: "bold"}}>
                 38.990.000
               </h7>
 
@@ -596,7 +420,7 @@ function Alone_product() {
             </div>
 
             <div class="evaluate">
-              <h8 class="evaluate_star" style={{ color: "orange" }}>
+              <h8 class="evaluate_star" style={{color: "orange"}}>
                 5.0 <i class="fa fa-star" aria-hidden="true"></i>
               </h8>
               <h9 class="total">(10)</h9>
@@ -605,7 +429,7 @@ function Alone_product() {
         </div>
         <div class="ull">
           <div
-            style={{ backgroundColor: "orange", width: "auto", height: "1px" }}
+            style={{backgroundColor: "orange", width: "auto", height: "1px"}}
           ></div>
           <div
             style={{
@@ -615,9 +439,9 @@ function Alone_product() {
               margin: "15px 0 0 0",
             }}
           >
-            <div style={{ fontSize: ".75rem", fontWeight: "700" }}>
+            <div style={{fontSize: ".75rem", fontWeight: "700"}}>
               CHĂM SÓC KHÁCH HÀNG
-              <ul style={{ paddingLeft: "0" }}>
+              <ul style={{paddingLeft: "0"}}>
                 <li>Trung Tâm Trợ Giúp</li>
                 <li>Vận Chuyển</li>
                 <li>Trả Hàng & Hoàn Tiền</li>
@@ -625,9 +449,9 @@ function Alone_product() {
                 <li>Chính Sách Bảo Hành</li>
               </ul>
             </div>
-            <div style={{ fontSize: ".75rem", fontWeight: "700" }}>
+            <div style={{fontSize: ".75rem", fontWeight: "700"}}>
               Về Iphone Store
-              <ul style={{ paddingLeft: "0" }}>
+              <ul style={{paddingLeft: "0"}}>
                 <li>Giới Thiệu Về Iphone Store Việt Nam</li>
                 <li>Tuyển Dụng</li>
                 <li>Chính Hãng</li>
@@ -635,9 +459,9 @@ function Alone_product() {
                 <li>Liên Hệ Với Truyền Thông</li>
               </ul>
             </div>
-            <div style={{ fontSize: ".75rem", fontWeight: "700" }}>
+            <div style={{fontSize: ".75rem", fontWeight: "700"}}>
               THANH TOÁN
-              <ul style={{ paddingLeft: "0" }}>
+              <ul style={{paddingLeft: "0"}}>
                 <li>
                   <img
                     src="https://down-vn.img.susercontent.com/file/0217f1d345587aa0a300e69e2195c492
@@ -647,7 +471,7 @@ function Alone_product() {
                   <img
                     src="	https://down-vn.img.susercontent.com/file/9263fa8c83628f5deff55e2a90758b06
                             "
-                    style={{ maxHeight: "100%", maxWidth: "100%" }}
+                    style={{maxHeight: "100%", maxWidth: "100%"}}
                     alt=""
                   />
                   <div
@@ -670,14 +494,14 @@ function Alone_product() {
                 </li>
               </ul>
             </div>
-            <div style={{ fontSize: ".75rem", fontWeight: "700" }}>
+            <div style={{fontSize: ".75rem", fontWeight: "700"}}>
               THEO DÕI CHÚNG TÔI TRÊN
-              <div style={{ display: "flex", margin: "5px 0 0 0" }}>
+              <div style={{display: "flex", margin: "5px 0 0 0"}}>
                 <img
                   src="https://down-vn.img.susercontent.com/file/a5e589e8e118e937dc660f224b9a1472"
                   alt=""
                 />
-                <ul style={{ paddingLeft: "8px" }}>
+                <ul style={{paddingLeft: "8px"}}>
                   <li>
                     <img
                       src="	https://down-vn.img.susercontent.com/file/ad01628e90ddf248076685f73497c163"
@@ -711,7 +535,7 @@ function Alone_product() {
             </div>
           </div>
           <div
-            style={{ backgroundColor: "black", width: "auto", height: "1px" }}
+            style={{backgroundColor: "black", width: "auto", height: "1px"}}
           ></div>
 
           <div
@@ -729,24 +553,16 @@ function Alone_product() {
                 justifyContent: "space-around",
               }}
             >
-              <div
-                style={{ color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px" }}
-              >
+              <div style={{color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px"}}>
                 CHÍNH SÁCH BẢO MẬT
               </div>
-              <div
-                style={{ color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px" }}
-              >
+              <div style={{color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px"}}>
                 QUY CHẾ HOẠT ĐỘNG
               </div>
-              <div
-                style={{ color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px" }}
-              >
+              <div style={{color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px"}}>
                 CHÍNH SÁCH VẬN CHUYỂN
               </div>
-              <div
-                style={{ color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px" }}
-              >
+              <div style={{color: "rgba(0,0,0,.54)", margin: "20px 0 0 50px"}}>
                 {" "}
                 CHÍNH SÁCH TRẢ HÀNG VÀ HOÀN TIỀN
               </div>
@@ -763,12 +579,12 @@ function Alone_product() {
                   <img
                     src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png
                             "
-                    style={{ width: "161px", height: "55px" }}
+                    style={{width: "161px", height: "55px"}}
                   />
                   <img
                     src="http://online.gov.vn/Content/EndUser/LogoCCDVSaleNoti/logoCCDV.png
                             "
-                    style={{ width: "161px", height: "55px" }}
+                    style={{width: "161px", height: "55px"}}
                     alt=""
                   />
                 </li>
@@ -851,7 +667,7 @@ function Alone_product() {
                 <a href="#Processor">
                   <li
                     class="hover_infor"
-                    style={{ width: "auto", height: "40px" }}
+                    style={{width: "auto", height: "40px"}}
                   >
                     RAM
                   </li>
@@ -885,19 +701,19 @@ function Alone_product() {
                 </a>
               </ul>
             </div>
-            <div style={{ display: "flex" }}>
-              <div style={{ width: "75%", margin: "0" }}>
+            <div style={{display: "flex"}}>
+              <div style={{width: "75%", margin: "0"}}>
                 <img
                   src="./Source/img/14seri_vang.jpg"
                   alt=""
                   width="100%"
                   height="auto"
-                  style={{ marginLeft: "5px" }}
+                  style={{marginLeft: "5px"}}
                   class="infor_product"
                 />
               </div>
-              <div style={{ width: "25%" }}>
-                <ul style={{ marginTop: "0" }} class="edit_lii">
+              <div style={{width: "25%"}}>
+                <ul style={{marginTop: "0"}} class="edit_lii">
                   <li>
                     <img
                       src="./Source/img/iphone13_trang.jpg"
@@ -963,7 +779,7 @@ function Alone_product() {
                   <tbody>
                     <tr>
                       <td>Xuất xứ</td>
-                      <td style={{ paddingRight: "63px" }}>Trung Quốc</td>
+                      <td style={{paddingRight: "63px"}}>Trung Quốc</td>
                     </tr>
                     <tr>
                       <td>Thời gian bảo hành</td>
@@ -989,7 +805,7 @@ function Alone_product() {
                       <td>
                         <a
                           href="https://fptshop.com.vn/tin-tuc/danh-gia/chuan-ip68-la-gi-khac-biet-gi-so-voi-ip67-57823"
-                          style={{ color: "blue" }}
+                          style={{color: "blue"}}
                         >
                           IP68
                         </a>
@@ -1095,8 +911,8 @@ function Alone_product() {
                 <table class="s">
                   <tbody>
                     <tr>
-                      <td style={{ width: "200px" }}>Quay phim</td>
-                      <td style={{ display: "flex" }}>
+                      <td style={{width: "200px"}}>Quay phim</td>
+                      <td style={{display: "flex"}}>
                         <ul>
                           <li>4K 2160p@24fps</li>
                           <li>4K 2160p@30fps</li>
@@ -1112,8 +928,8 @@ function Alone_product() {
                       </td>
                     </tr>
                     <tr>
-                      <td style={{ width: "200px" }}>Tính năng</td>
-                      <td style={{ display: "flex" }}>
+                      <td style={{width: "200px"}}>Tính năng</td>
+                      <td style={{display: "flex"}}>
                         <ul>
                           <li>Ban đêm (Night Mode)</li>
                           <li>Chạm lấy nét</li>
@@ -1236,7 +1052,7 @@ function Alone_product() {
                     </tr>
                     <tr>
                       <td>GPS</td>
-                      <td style={{ display: "flex" }}>
+                      <td style={{display: "flex"}}>
                         <ul>
                           <li>BEIDOU</li>
                           <li>GLONASS</li>
@@ -1269,7 +1085,7 @@ function Alone_product() {
                     </tr>
                     <tr>
                       <td>Công nghệ pin</td>
-                      <td style={{ display: "flex" }}>
+                      <td style={{display: "flex"}}>
                         <ul>
                           <li class="dots">Hỗ trợ sạc không dây</li>
                           <li class="dots">Sạc pin nhanh</li>
@@ -1314,7 +1130,7 @@ function Alone_product() {
                           }}
                         >
                           <i
-                            style={{ marginTop: "15px" }}
+                            style={{marginTop: "15px"}}
                             class="fa fa-book "
                             aria-hidden="true"
                           ></i>
@@ -1332,7 +1148,7 @@ function Alone_product() {
                           }}
                         >
                           <i
-                            style={{ marginTop: "15px" }}
+                            style={{marginTop: "15px"}}
                             class="fa fa-book "
                             aria-hidden="true"
                           ></i>
@@ -1353,7 +1169,7 @@ function Alone_product() {
                           }}
                         >
                           <i
-                            style={{ marginTop: "15px" }}
+                            style={{marginTop: "15px"}}
                             class="fa fa-book "
                             aria-hidden="true"
                           ></i>

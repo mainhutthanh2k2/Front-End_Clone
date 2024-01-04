@@ -1,7 +1,7 @@
 .body_main {
   width: 1145px;
   margin: 0 auto;
-  height: 900px;
+  height: auto;
 }
 img {
   background-position: center;
@@ -10,12 +10,12 @@ img {
 }
 .banner_body {
   width: 1145px;
-  height: 250px;
-  margin: 0px 0px 0px 20px;
+  height: auto;
+  margin: 10px 0px 10px 20px;
 }
 .flex_banner {
   display: flex;
-  width: 1145px;
+  width: 1160px;
   margin: 0px 0px 0px 20px;
 }
 .flex_banner_left {
@@ -31,6 +31,9 @@ img {
   justify-content: space-evenly;
   flex-direction: column;
 }
+.voucher {
+  margin-left: 5px;
+}
 .voucher span {
   font-size: 12px;
   font-weight: 700;
@@ -42,6 +45,7 @@ img {
 }
 .flex_voucher {
   display: flex;
+  margin-bottom: 5px;
 }
 // product img
 .product_img {
@@ -52,11 +56,14 @@ img {
   display: flex;
   flex-wrap: wrap;
   width: 1145px;
+  height: auto;
   margin: 0px 0px 0px 20px;
 }
 .img_product {
   width: 190px;
   height: 160px;
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 .img_product:hover {
   box-shadow: 0px 2px 5px black;
@@ -72,7 +79,7 @@ img {
   position: relative;
   width: 70px;
   height: 71px;
-  background: red;
+  background: white;
   margin-left: 56px;
   margin-top: 27px;
   border-radius: 50%;

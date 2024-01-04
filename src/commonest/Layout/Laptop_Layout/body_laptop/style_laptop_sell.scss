@@ -2,7 +2,7 @@
   width: 1145px;
   height: auto;
   margin: 10px auto auto auto;
-  background: #f8f9fa;
+  background: white;
 }
 .Home {
   color: blue;
@@ -11,7 +11,7 @@
 .banner {
   margin-top: 10px;
   width: 100%;
-  height: 200px;
+  height: auto;
 }
 
 .img_banner {
@@ -24,7 +24,7 @@
   display: flex;
   width: 100%;
   height: auto;
-  background: #f8f9fa;
+  background: white;
 }
 .left {
   width: 25%;
@@ -75,7 +75,6 @@
   height: auto;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-bottom: none;
-  justify-content: space-between;
   border-radius: 9px;
 }
 .smart_phone {
@@ -84,10 +83,12 @@
   height: 450px;
   background: transparent;
   transition: 1s linear ease-in;
+  margin-bottom: 15px;
 }
 .smart_phone img {
-  width: 100%;
-  height: auto;
+  width: 175px;
+  height: 175px;
+  margin-left: 45px;
   transition: 0.4s ease-in-out;
 }
 .smart_phone:hover {

@@ -1,3 +1,4 @@
+import React from "react";
 import classNames from "classnames/bind";
 import {
   BrowserRouter as Routes,
@@ -6,9 +7,41 @@ import {
   NavLink,
   NavNavLink,
 } from "react-router-dom";
+import Api from "~/API/ProductAPI";
 import styles from "./middle_bar.scss";
 const Styles = classNames.bind(styles);
+
 function MiddleBar() {
+  const [api, setApi] = React.useState({});
+  React.useEffect(() => {
+    const API = async () => {
+      let phone = await Api.getProducts({limit: 1, category: "PH"});
+      setApi(phone);
+    };
+    API().catch(console.error);
+  }, []);
+  //
+  const [laptop, setlaptop] = React.useState({});
+  React.useEffect(() => {
+    const API = async () => {
+      let phone = await Api.getProducts({
+        category: "PH",
+      });
+      setApi(phone);
+    };
+    API().catch(console.error);
+  }, []);
+  //
+  const [table, settaplet] = React.useState({});
+  React.useEffect(() => {
+    const API = async () => {
+      let phone = await Api.getProducts({
+        category: "PH",
+      });
+      setApi(phone);
+    };
+    API().catch(console.error);
+  }, []);
   return (
     <div className={Styles("horizontal_menu")}>
       <div className={Styles("horizontal_menu_in")}>
@@ -114,35 +147,40 @@ function MiddleBar() {
                 <div className={Styles("bestseller")}>Bán chạy nhất</div>
                 <div>
                   <ul>
-                    <li className={Styles("img_phone")}>
-                      <div>
-                        <NavLink to="">
-                          <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D100069061764088&tbnid=fG_bfULn1CQw0M&vet=12ahUKEwjz6oeGkuiCAxUy-WEKHTd-AIUQMygJegQIARBa..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fimglearning%2F&docid=RnuGIme1p94BMM&w=1216&h=1216&q=img&ved=2ahUKEwjz6oeGkuiCAxUy-WEKHTd-AIUQMygJegQIARBa" />
-                        </NavLink>
-                      </div>
-                      <div className={Styles("img_bestseller")}>
-                        <p className={Styles("name_black")}>iphone</p>
-                        <p className={Styles("price_red")}>30.000.000</p>
-                      </div>
-                    </li>
-                    <li className={Styles("img_phone")}>
-                      <div>
-                        <NavLink to="">
-                          <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D100069061764088&tbnid=fG_bfULn1CQw0M&vet=12ahUKEwjz6oeGkuiCAxUy-WEKHTd-AIUQMygJegQIARBa..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fimglearning%2F&docid=RnuGIme1p94BMM&w=1216&h=1216&q=img&ved=2ahUKEwjz6oeGkuiCAxUy-WEKHTd-AIUQMygJegQIARBa" />
-                        </NavLink>
-                      </div>
-                      <div className={Styles("img_bestseller")}>
-                        <p className={Styles("name_black")}>iphone</p>
-                        <p className={Styles("price_red")}>30.000.000</p>
-                      </div>
-                    </li>
+                    {api &&
+                      api.length > 0 &&
+                      api.map((e, index) => {
+                        return (
+                          <li className={Styles("img_phone")}>
+                            <div>
+                              <NavLink to="">
+                                <img src={e.images} />
+                              </NavLink>
+                            </div>
+                            <div className={Styles("img_bestseller")}>
+                              <p className={Styles("name_black")}>
+                                {e.name.split(" ", 2)}
+                              </p>
+                              <p className={Styles("price_red")}>
+                                {Intl.NumberFormat("Vi", {
+                                  style: "currency",
+                                  currency: "VND",
+                                }).format(e.price)}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
                   </ul>
                 </div>
               </div>
               <div className={Styles("img_right")}>
                 <div className={Styles("img_margin")}>
                   <NavLink to="">
-                    <img />
+                    <img
+                      src="https://images.fpt.shop/unsafe/fit-in/248x248/filters:quality(90):fill(white)/fptshop.com.vn/Uploads/Originals/2023/11/13/638354842660668434_H4.png"
+                      style={{width: "100%", height: "auto"}}
+                    />
                   </NavLink>
                 </div>
               </div>

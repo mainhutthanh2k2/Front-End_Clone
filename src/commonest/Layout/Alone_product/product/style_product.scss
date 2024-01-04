@@ -125,13 +125,7 @@
   display: none;
 }
 /*  */
-.seen_iphone_black,
-.seen_iphone_white,
-.seen_iphone_purple,
-.seen_iphone_yellow,
-.seen_iphone_pink {
-  display: none;
-}
+
 .none {
   display: none;
 }
@@ -161,16 +155,9 @@
 .input_use {
   display: none;
 }
-.thanhw {
-  width: 100px;
-}
-.button_buy:hover,
-.button_add_cart:hover {
-  background-color: #e59b11;
-}
-.button_buy,
-.button_add_cart {
-  background-color: yellow;
+.button_buyy {
+  background: red;
+  width: 160px;
 }
 .title {
   color: #212121;
@@ -178,6 +165,23 @@
   font-weight: 700;
   font-family: Roboto-Medium;
   line-height: 20px;
+}
+.buy_noww {
+  background-color: orange;
+  padding: 5px;
+}
+.buy_noww:hover,
+.add_cart:hover {
+  background-color: #ffcc33;
+}
+.sc {
+  margin-left: 14px;
+}
+.add_cart {
+  background-color: orange;
+  margin-left: 5px;
+  height: 100px;
+  padding: 5px;
 }
 .from_product {
   position: fixed;

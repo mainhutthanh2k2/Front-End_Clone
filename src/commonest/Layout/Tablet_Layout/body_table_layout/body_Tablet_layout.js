@@ -4,8 +4,19 @@ import "tippy.js/dist/tippy.css";
 import classNames from "classnames/bind";
 import {NavLink} from "react-router-dom";
 import stylee from "./style_Tablet_layout.scss";
+import Apiproduct from "~/API/ProductAPI";
 const Styles = classNames.bind(stylee);
 function Body_laptop() {
+  const [product_phone, setProduct_phone] = React.useState({});
+  React.useEffect(() => {
+    const API_phone = async () => {
+      const Tablet = await Apiproduct.getProducts({category: "TL"});
+
+      setProduct_phone(Tablet);
+    };
+    API_phone().catch(console.error);
+  }, []);
+
   return (
     <React.Fragment>
       <div className={Styles("category-container")}>
@@ -17,7 +28,8 @@ function Body_laptop() {
         <div className={Styles("banner")}>
           <img
             className={Styles("img_banner")}
-            src="https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg"
+            src="https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/142455/Originals/B%E1%BA%A3n%20sao%20NF_1200x628%20(2).jpg"
+            style={{width: "100%", height: "auto"}}
           />
         </div>
         <div className={Styles("row_Tablet")}>
@@ -42,78 +54,34 @@ function Body_laptop() {
               <span>Hãng điện thoại</span>
             </div>
             <div className={Styles("flex_product")}>
-              <div className={Styles("smart_phone")}>
-                <NavLink to="">
-                  <img src="https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg" />
-                </NavLink>
-                <h1>Name product</h1>
-                <h2>price</h2>
-                <ul>
-                  <li>chip</li>
-                  <li>man hinh</li>
-                  <li>ram</li>
-                  <li>bo nho</li>
-                </ul>
-                <NavLink to="">
-                  <div className={Styles("dad_now_buy")}>
-                    <button className={Styles("now_buy")}>Mua Ngay</button>
+              {product_phone &&
+                product_phone.length > 0 &&
+                product_phone.map((e, index) => (
+                  <div className={Styles("smart_phone")} key={index}>
+                    <NavLink to="/product">
+                      <img src={e.images} className={Styles("img_edit")} />
+                    </NavLink>
+                    <h1>{e.name}</h1>
+                    <h2 className={Styles("price_productt")}>
+                      {Intl.NumberFormat("Vi", {
+                        style: "currency",
+                        currency: "VND",
+                      }).format(e.price)}
+                    </h2>
+                    <ul>
+                      {e.specifications.split(";", 4).map((ee) => (
+                        <li>{ee}</li>
+                      ))}
+                    </ul>
+
+                    <NavLink to="">
+                      <div className={Styles("dad_now_buy")}>
+                        <button className={Styles("now_buy")}>Mua Ngay</button>
+                      </div>
+                    </NavLink>
                   </div>
-                </NavLink>
-              </div>
-              <div className={Styles("smart_phone")}>
-                <NavLink to="">
-                  <img src="https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg" />
-                </NavLink>
-                <h1>Name product</h1>
-                <h2>price</h2>
-                <ul>
-                  <li>chip</li>
-                  <li>man hinh</li>
-                  <li>ram</li>
-                  <li>bo nho</li>
-                </ul>
-                <NavLink to="">
-                  <div className={Styles("dad_now_buy")}>
-                    <button className={Styles("now_buy")}>Mua Ngay</button>
-                  </div>
-                </NavLink>
-              </div>
-              <div className={Styles("smart_phone")}>
-                <NavLink to="">
-                  <img src="https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg" />
-                </NavLink>
-                <h1>Name product</h1>
-                <h2>price</h2>
-                <ul>
-                  <li>chip</li>
-                  <li>man hinh</li>
-                  <li>ram</li>
-                  <li>bo nho</li>
-                </ul>
-                <NavLink to="">
-                  <div className={Styles("dad_now_buy")}>
-                    <button className={Styles("now_buy")}>Mua Ngay</button>
-                  </div>
-                </NavLink>
-              </div>
-              <div className={Styles("smart_phone")}>
-                <NavLink to="">
-                  <img src="https://pbs.twimg.com/profile_images/1701878932176351232/AlNU3WTK_400x400.jpg" />
-                </NavLink>
-                <h1>Name product</h1>
-                <h2>price</h2>
-                <ul>
-                  <li>chip</li>
-                  <li>man hinh</li>
-                  <li>ram</li>
-                  <li>bo nho</li>
-                </ul>
-                <NavLink to="">
-                  <div className={Styles("dad_now_buy")}>
-                    <button className={Styles("now_buy")}>Mua Ngay</button>
-                  </div>
-                </NavLink>
-              </div>
+                ))}
+              ;
             </div>
             <NavLink to="/">
               <div className={Styles("Seen")}>
