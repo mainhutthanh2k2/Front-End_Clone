@@ -1,20 +1,23 @@
 import axios from "axios";
 import { store } from "./store/store.js";
 
+const localhost = "http://localhost:8081/";
+const production = "https://fpt-shop-clone-be.onrender.com";
+
 const instance = axios.create({
-    baseURL: "http://localhost:8081/",
-    timeout: 5000,
+  baseURL: production,
+  timeout: 5000,
 });
 
 store.subscribe(listener);
 
 function select(state) {
-    return state.user.accessToken;
+  return state.user.accessToken;
 }
 
 function listener() {
-    let token = select(store.getState());
-    instance.defaults.headers.common['token'] = token;
+  let token = select(store.getState());
+  instance.defaults.headers.common["token"] = token;
 }
 
 export default instance;
