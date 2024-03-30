@@ -1,9 +1,9 @@
 import axios from "axios";
 import { store } from "./store/store.js";
 
-//const localhost = "http://localhost:8081/";
-const localhost = "https://back-end-g0na.onrender.com";
-const production = "https://fpt-shop-clone-be.onrender.com";
+const localhost = "http://localhost:8081/";
+
+const production = "https://back-end-g0na.onrender.com";
 
 const instance = axios.create({
   baseURL: production,
